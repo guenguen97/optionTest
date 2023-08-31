@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ko"  xmlns:th="http://www.thymeleaf.org">
+<head>
+
+
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>fullpage 연습</title>
+
+    <!-- 제이쿼리 불러오기 -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- 풀페이지 불러오기 -->
+    <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/4.0.19/fullpage.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/4.0.19/fullpage.min.js"></script>
+    <style>
+
+        #fullpage > .section {
+          display: block;
+        }
+
+        .option-section {
+            display :flex;
+            border:1px solid red;
+            width :100%;
+            height: 900px;
+        }
+        .img-section {
+         border: 1px solid orange;
+         width:50%;
+         height:100%;
+
+        }
+        .img-section > .img-container {
+        border:5px solid green;
+            margin-top:auto;
+            margin-bottom:auto;
+             width :  700px ;
+                height: 500px ;
+            margin-left: auto;
+            margin-right: auto;
+
+        }
+        .img-section > .img-container >img {
+                max-width :100% ;
+                height: 100%;
+
+
+        }
+
+        .select-section {
+         border: 1px solid orange;
+         width:50%;
+         height:100%;
+        }
+        
+        
+        
+        .option-container {
+        border :1px solid green;
+
+        width: 90%;
+        height:50%;
+        display : flex;
+        flex-wrap :wrap;
+        }
+
+        .option-container >a >.option-box{
+        width :200px;
+        height:250px;
+        border :1px solid blue;
+        margin : 30px;
+        }
+    </style>
+</head>
+<body>
+<div id="fullpage">
+    <!-- 1 -->
+    <div class="section section-1">
+        <a href="#section2"
+        ><img
+                src="https://www.hyundai.com/static/images/model/santafe/23fc/the_all_new_santafe_calligraphy_black_ink.jpg"
+                alt=""
+        /></a>
+    </div>
+    <!-- fp-auto-height 화면높이만큼 다음페이지 살짝나옴 -->
+    <!-- 2 -->
+    <div class="section section-2 fp-auto-height">
+        <a href="#section3">Some section-2</a>
+    </div>
+    <!-- 3 -->
+    <div class="section section-3">
+        <a href="#section4">Some section-3</a>
+
+    <div>옵션</div>
+        <div class="option-section">
+<!--          이미지 넣을 공간-->
+            <div class="img-section">
+                <div class="img-container"><img class="img-item1" src="https://www.hyundai.com/contents/spec/MX5/passenger8waypowerseat_s.jpg" alt=""></div>
+            </div>
+
+<!--           옵션 선택 넣을 공간-->
+            <div class="select-section">
+                <div>
+                    <div>옵션 dd선택</div>
+                    <div class="option-container">
+                        <a th:each="carOption : ${carOption}" th:id="${carOption.id}">
+                            <div class="option-box">
+                                <img class="option-box-img" th:src="${carOption.imgUrl}" th:alt="${carOption.name}" th:data-img-url="${carOption.imgUrl}">
+                                <div th:text="${carOption.name}"></div>
+                            </div>
+                        </a>
+                    </div>
+
+
+
+
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+    <!-- 4 -->
+    <div class="section section-4">
+        <a href="#section1">Some section-4</a>
+    </div>
+</div>
+</body>
+</html>
+
+<script>
+    $(document).ready(function() {
+            $(".option-box-img").on("click", function() {
+                var imgUrl = $(this).attr("data-img-url");
+                $(".img-item1").attr("src", imgUrl);
+            });
+        });
+
+
+
+
+            new fullpage("#fullpage", {
+          //options here
+          autoScrolling: true,
+          scrollHorizontally: true,
+          sectionsColor: ["pink", "skyblue", "white", "plum"],
+          //a태그 링크 url주소로 바꿔야함
+          anchors: ["section1", "section2", "section3", "section4"],
+          //navigation 동그라미 버튼 페이지
+          navigation: true,
+          navigationPosition: "left",
+          navigationTooltips: ["section1", "section2", "section3", "section4"],
+          //navigation 이름을 계속 뜸
+          showActiveTooltip: true,
+          slidesNavigation: true,
+          //마지막페이지 스크롤하면 첫번째 페이지로 이동
+          loopBottom: true,
+          //첫번째 페이지 스크롤하면 마지막페이지로 이동
+          loopTop: true,
+        });
+</script>
