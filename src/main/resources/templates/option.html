@@ -39,8 +39,8 @@
         border:5px solid green;
             margin-top:100px;
             margin-bottom:auto;
-             width :  700px ;
-                height: 500px ;
+             width :  600px ;
+                height: 400px ;
             margin-left: auto;
             margin-right: auto;
 
@@ -55,7 +55,7 @@
 
 
  .img-section>.information-box {
-                width :  700px ;
+                width :  600px ;
                 height: 200px ;
             margin-left: auto;
             margin-right: auto;
@@ -75,15 +75,26 @@
         width: 90%;
         height:50%;
         display : flex;
-        flex-wrap :wrap;
+
         }
 
-        .option-container >a >.option-box{
+        .option-container >.option-box{
         width :200px;
         height:250px;
         border :1px solid blue;
         margin : 30px;
+         display : flex;
+         flex-wrap :warp;
         }
+        .option-item {
+        border :4px solid blue;
+        margin: 0 30px;
+        }
+        .option-container >.option-box > div >  a  > .option-box-img {
+        width :200px;
+        height:250px;
+        }
+
     </style>
 </head>
 <body>
@@ -109,29 +120,42 @@
         <div class="option-section">
 <!--          이미지 넣을 공간-->
             <div class="img-section">
-                <div class="img-container"><img class="img-item1" src="https://www.hyundai.com/contents/spec/MX5/passenger8waypowerseat_s.jpg" alt=""></div>
+
+                <div class="img-container">
+
+                    <div style="font-size : 40px;"> <span>총 가격 </span> <span class="option-price">35460000</span>  <span>원</span>  </div>
+                    <img class="img-item1" src="https://www.hyundai.com/contents/spec/MX5/passenger8waypowerseat_s.jpg" alt="">
                 <div class="information-box">
-                    <span class="information-text"></span>
+                    <span class="information-text">동승석의 시트 포지션을 조정하여 동승자의 체형에 맞는 편안한 자세를 유지할 수 있도록 돕는 기능입니다. 8way 전동시트 : 동승석 우하단에 위치한 조작부로 8방향으로 조절 기능(시트백 기울기, 시트 앞/뒤 이동, 쿠션부 앞/뒤 높이 조절)을 전동 방식으로 조절합니다.</span>
+                </div>
                 </div>
             </div>
 
 <!--           옵션 선택 넣을 공간-->
             <div class="select-section">
-                <div>
-                    <div>옵션 dd선택</div>
+
+                    <div>옵션 선택</div>
                     <div class="option-container">
-                        <a th:each="carOption : ${carOption}" th:id="${carOption.id}">
+
                             <div class="option-box">
+                                <div  class="option-item" th:each="carOption : ${carOption}" th:id="${carOption.id}">
+                                <a >
                                 <img class="option-box-img" th:src="${carOption.imgUrl}" th:alt="${carOption.name}" th:data-img-url="${carOption.imgUrl}"  th:information-text="${carOption.information}">
-                                <div th:text="${carOption.name}"></div>
+                                </a>
+                                <a class="check" href="#"  th:value="${carOption.price}">
+                                    <input type="checkbox">
+                                    <div th:text="${carOption.name}"></div>
+                                    <div class="price" th:text="${carOption.price}"></div><span>원</span>
+                                </a>
+                                </div>
                             </div>
-                        </a>
+
                     </div>
 
 
 
 
-                </div>
+
             </div>
         </div>
 
@@ -147,15 +171,38 @@
 </html>
 
 <script>
+    var optionPrice=null;
+        $(document).ready(function() {
+                $(".option-box-img").on("click", function() {
+                    var imgUrl = $(this).attr("data-img-url");
+                    var informationText = $(this).attr("information-text");;
+                    $(".img-item1").attr("src", imgUrl);
+                    $(".information-text").text(informationText);
+                });
 
-    $(document).ready(function() {
-            $(".option-box-img").on("click", function() {
-                var imgUrl = $(this).attr("data-img-url");
-                var informationText = $(this).attr("information-text");;
-                $(".img-item1").attr("src", imgUrl);
-                $(".information-text").text(informationText);
+                   var text = $(".check");
+
+                // Attach a click event handler to the selected divs
+                text.click(function() {
+                    var checkbox = $(this).find("input[type='checkbox']");
+                    var num = $(this).attr("value");
+                    optionPrice = $(".option-price").text();
+                    var currentPrice =  parseFloat(optionPrice, 10);
+                    var otherPrice = parseFloat(num, 10);
+
+
+                    var num1 = parseFloat(num.textContent);
+                    if (checkbox.prop("checked")) {
+                        $(".option-price").text(currentPrice-otherPrice);
+                         checkbox.prop("checked", false);
+                     } else {
+                            $(".option-price").text(currentPrice+otherPrice);
+                                 checkbox.prop("checked", true);
+                          }
+                });
+
+
             });
-        });
 </script>
 
 
