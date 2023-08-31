@@ -37,7 +37,7 @@
         }
         .img-section > .img-container {
         border:5px solid green;
-            margin-top:auto;
+            margin-top:100px;
             margin-bottom:auto;
              width :  700px ;
                 height: 500px ;
@@ -52,6 +52,15 @@
 
         }
 
+
+
+ .img-section>.information-box {
+                width :  700px ;
+                height: 200px ;
+            margin-left: auto;
+            margin-right: auto;
+            border :1px solid green;
+ }
         .select-section {
          border: 1px solid orange;
          width:50%;
@@ -101,6 +110,9 @@
 <!--          이미지 넣을 공간-->
             <div class="img-section">
                 <div class="img-container"><img class="img-item1" src="https://www.hyundai.com/contents/spec/MX5/passenger8waypowerseat_s.jpg" alt=""></div>
+                <div class="information-box">
+                    <span class="information-text"></span>
+                </div>
             </div>
 
 <!--           옵션 선택 넣을 공간-->
@@ -110,7 +122,7 @@
                     <div class="option-container">
                         <a th:each="carOption : ${carOption}" th:id="${carOption.id}">
                             <div class="option-box">
-                                <img class="option-box-img" th:src="${carOption.imgUrl}" th:alt="${carOption.name}" th:data-img-url="${carOption.imgUrl}">
+                                <img class="option-box-img" th:src="${carOption.imgUrl}" th:alt="${carOption.name}" th:data-img-url="${carOption.imgUrl}"  th:information-text="${carOption.information}">
                                 <div th:text="${carOption.name}"></div>
                             </div>
                         </a>
@@ -135,14 +147,19 @@
 </html>
 
 <script>
+
     $(document).ready(function() {
             $(".option-box-img").on("click", function() {
                 var imgUrl = $(this).attr("data-img-url");
+                var informationText = $(this).attr("information-text");;
                 $(".img-item1").attr("src", imgUrl);
+                $(".information-text").text(informationText);
             });
         });
+</script>
 
 
+<script>
 
 
             new fullpage("#fullpage", {

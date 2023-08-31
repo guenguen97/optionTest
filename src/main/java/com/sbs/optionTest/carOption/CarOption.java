@@ -23,6 +23,15 @@ public class CarOption {
     @Column(columnDefinition = "TEXT") // TEXT
     private String imgUrl;
 
+    @Column()  //옵션 가격
+    private long price;
+
+    @Column(length = 500)   // 옵션 설명
+    private String information;
+
+
+
+
     private LocalDateTime createDate;
 
 
