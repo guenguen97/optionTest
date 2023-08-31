@@ -18,36 +18,37 @@
     />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/4.0.19/fullpage.min.js"></script>
     <style>
-
+        a {
+        text-decoration:none;
+        color :inherit;
+        }
         #fullpage > .section {
           display: block;
         }
 
         .option-section {
             display :flex;
-            border:1px solid red;
             width :100%;
             height: 900px;
         }
         .img-section {
-         border: 1px solid orange;
          width:50%;
          height:100%;
 
         }
         .img-section > .img-container {
-        border:5px solid green;
             margin-top:100px;
             margin-bottom:auto;
              width :  600px ;
-                height: 400px ;
+             height: 500px ;
             margin-left: auto;
             margin-right: auto;
+            border : 1px solid gray;
 
         }
         .img-section > .img-container >img {
-                max-width :100% ;
-                height: 100%;
+                width :100% ;
+                height: 60%;
 
 
         }
@@ -59,10 +60,8 @@
                 height: 200px ;
             margin-left: auto;
             margin-right: auto;
-            border :1px solid green;
  }
         .select-section {
-         border: 1px solid orange;
          width:50%;
          height:100%;
         }
@@ -70,7 +69,6 @@
         
         
         .option-container {
-        border :1px solid green;
 
         width: 90%;
         height:50%;
@@ -79,19 +77,19 @@
         }
 
         .option-container >.option-box{
-        width :200px;
-        height:250px;
-        border :1px solid blue;
+        width :90%;
+        height:100%;
         margin : 30px;
          display : flex;
-         flex-wrap :warp;
+         flex-wrap :wrap;
         }
         .option-item {
-        border :4px solid blue;
-        margin: 0 30px;
+        width:280px;
+        border :1px solid gray;
+        margin : 20px 20px;
         }
         .option-container >.option-box > div >  a  > .option-box-img {
-        width :200px;
+        width :100%;
         height:250px;
         }
 
@@ -122,7 +120,6 @@
             <div class="img-section">
 
                 <div class="img-container">
-
                     <div style="font-size : 40px;"> <span>총 가격 </span> <span class="option-price">35460000</span>  <span>원</span>  </div>
                     <img class="img-item1" src="https://www.hyundai.com/contents/spec/MX5/passenger8waypowerseat_s.jpg" alt="">
                 <div class="information-box">
@@ -137,12 +134,13 @@
                     <div>옵션 선택</div>
                     <div class="option-container">
 
-                            <div class="option-box">
-                                <div  class="option-item" th:each="carOption : ${carOption}" th:id="${carOption.id}">
+                            <div class="option-box" >
+                                <div  id="box" class="option-item" th:each="carOption : ${carOption}" th:id="${carOption.id}">
                                 <a >
                                 <img class="option-box-img" th:src="${carOption.imgUrl}" th:alt="${carOption.name}" th:data-img-url="${carOption.imgUrl}"  th:information-text="${carOption.information}">
                                 </a>
                                 <a class="check" href="#"  th:value="${carOption.price}">
+                                    <br>
                                     <input type="checkbox">
                                     <div th:text="${carOption.name}"></div>
                                     <div class="price" th:text="${carOption.price}"></div><span>원</span>
@@ -190,14 +188,19 @@
                     var currentPrice =  parseFloat(optionPrice, 10);
                     var otherPrice = parseFloat(num, 10);
 
-
+                    var optionItem = document.getElementById('box');
                     var num1 = parseFloat(num.textContent);
+                    console.log(optionItem);
                     if (checkbox.prop("checked")) {
-                        $(".option-price").text(currentPrice-otherPrice);
+
                          checkbox.prop("checked", false);
-                     } else {
-                            $(".option-price").text(currentPrice+otherPrice);
-                                 checkbox.prop("checked", true);
+                         $(".option-price").text(currentPrice-otherPrice);
+                        optionItem.style.border="1px solid gray";
+
+                            } else {
+                               checkbox.prop("checked", true);
+                                 $(".option-price").text(currentPrice+otherPrice);
+                          optionItem.style.border="1px solid #007fa8";
                           }
                 });
 
