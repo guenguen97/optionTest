@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Car Poor</title>
+</head>
+<style>
+
+    *{
+        margin : 0;
+        padding : 0;
+        }
+
+    body {
+        padding : 20px;
+        background : #eee;
+        user-select : none;
+        }
+
+    [type=radio] {
+        display : none;
+        }
+
+    #slider {
+        height : 35vw;
+        position : relative;
+        perspective : 1000px;
+        transform-style : preserve-3d;
+        margin-top:500px;
+        margin-right:500px;
+        }
+
+    #slider label {
+        margin : auto;
+        margin-top:200px;
+        width : 60%;
+        height : 100%;
+        border-radius : 4px;
+        position : absolute;
+        left : 0;
+        right : 0;
+        cursor : pointer;
+        transition : transform 0.4s ease;
+        }
+
+
+
+    #s1:checked ~ #slide1, #s2:checked ~ #slide2,
+    #s3:checked ~ #slide3, #s4:checked ~ #slide4,
+    #s5:checked ~ #slide5, #s6:checked ~ #slide6,
+    #s7:checked ~ #slide7, #s8:checked ~ #slide8,
+    #s9:checked ~ #slide9
+
+
+    {
+        box-shadow : 0 13px 25px 0 rgba(0,0,0,.3), 0 11px 7px 0 rgba(0,0,0,.19);
+        transform : translate3d(0,-0%,0);
+        }
+
+    #s1:checked ~ #slide2, #s2:checked ~ #slide3,
+    #s3:checked ~ #slide4, #s4:checked ~ #slide5,
+    #s5:checked ~ #slide6, #s6:checked ~ #slide7,
+   #s7:checked ~ #slide8,   #s8:checked ~ #slide9,
+   #s9:checked ~ #slide1
+    {
+        box-shadow : 0 6px 10px 0 rgba(0,0,0,.3), 0 2px 2px 0 rgba(0,0,0,.2);
+        transform : translate3d(15%,-10%,-100px);
+        }
+
+    #s1:checked ~ #slide3, #s2:checked ~ #slide4,
+    #s3:checked ~ #slide5, #s4:checked ~ #slide6,
+    #s5:checked ~ #slide7,  #s6:checked ~ #slide8,
+    #s7:checked ~ #slide9, #s8:checked ~ #slide1,
+    #s9:checked ~ #slide2{
+        box-shadow : 0 1px 4px 0 rgba(0,0,0,.37);
+        transform : translate3d(30%,-20%,-200px);
+        }
+
+
+    #s1:checked ~ #slide4, #s2:checked ~ #slide5,
+    #s3:checked ~ #slide6, #s4:checked ~ #slide7,
+    #s5:checked ~ #slide8, #s6:checked ~ #slide9,
+     #s7:checked ~ #slide1, #s8:checked ~ #slide2,
+     #s9:checked ~ #slide3 {
+        box-shadow : 0 6px 10px 0 rgba(0,0,0,.3), 0 2px 2px 0 rgba(0,0,0,.2);
+        transform : translate3d(45%,-30%,-300px);
+        }
+
+
+      #s1:checked ~ #slide5, #s2:checked ~ #slide6,
+    #s3:checked ~ #slide7, #s4:checked ~ #slide8,
+    #s5:checked ~ #slide9,  #s6:checked ~ #slide1,
+     #s7:checked ~ #slide2, #s8:checked ~ #slide3,
+     #s9:checked ~ #slide4 {
+        box-shadow : 0 1px 4px 0 rgba(0,0,0,.37);
+        transform : translate3d(60%,-40%,-400px);
+        }
+
+
+     #s1:checked ~ #slide6  , #s2:checked ~ #slide7,
+    #s3:checked ~ #slide8, #s4:checked ~ #slide9,
+    #s5:checked ~ #slide1,  #s6:checked ~ #slide2,
+     #s7:checked ~ #slide3, #s8:checked ~ #slide4,
+     #s9:checked ~ #slide5
+
+    {
+        box-shadow : 0 6px 10px 0 rgba(0,0,0,.3), 0 2px 2px 0 rgba(0,0,0,.2);
+        transform : translate3d(75%,-50%,-500px);
+            }
+
+     #s1:checked ~ #slide7  , #s2:checked ~ #slide8,
+    #s3:checked ~ #slide9, #s4:checked ~ #slide1,
+    #s5:checked ~ #slide2,  #s6:checked ~ #slide3,
+     #s7:checked ~ #slide4, #s8:checked ~ #slide5,
+     #s9:checked ~ #slide6
+    {
+        box-shadow : 0 6px 10px 0 rgba(0,0,0,.3), 0 2px 2px 0 rgba(0,0,0,.2);
+        transform : translate3d(90%,-60%,-600px);
+        }
+
+     #s1:checked ~ #slide8  , #s2:checked ~ #slide9,
+    #s3:checked ~ #slide1, #s4:checked ~ #slide2,
+    #s5:checked ~ #slide3,  #s6:checked ~ #slide4,
+     #s7:checked ~ #slide5, #s8:checked ~ #slide6,
+     #s9:checked ~ #slide7
+    {
+        box-shadow : 0 6px 10px 0 rgba(0,0,0,.3), 0 2px 2px 0 rgba(0,0,0,.2);
+        transform : translate3d(105%,-70%,-700px);
+        }
+
+
+     #s1:checked ~ #slide9  , #s2:checked ~ #slide1,
+    #s3:checked ~ #slide2, #s4:checked ~ #slide3,
+    #s5:checked ~ #slide4,  #s6:checked ~ #slide5,
+     #s7:checked ~ #slide6, #s8:checked ~ #slide7,
+     #s9:checked ~ #slide8
+    {
+        box-shadow : 0 6px 10px 0 rgba(0,0,0,.3), 0 2px 2px 0 rgba(0,0,0,.2);
+        transform : translate3d(120%,-80%,-800px);
+        }
+
+<!--     #s1:checked ~ #slide  , #s2:checked ~ #slide,-->
+<!--    #s3:checked ~ #slide, #s4:checked ~ #slide,-->
+<!--    #s5:checked ~ #slide,  #s6:checked ~ #slide,-->
+<!--     #s7:checked ~ #slide, #s8:checked ~ #slide,-->
+<!--     #s9:checked ~ #slide-->
+<!--    {-->
+<!--        box-shadow : 0 6px 10px 0 rgba(0,0,0,.3), 0 2px 2px 0 rgba(0,0,0,.2);-->
+<!--        transform : translate3d(135%,-90%,-900px);-->
+<!--        }-->
+
+
+
+
+</style>
+
+<body>
+<br>
+<h1 style="text-align: center; font-family: monosplace; font-size: 42px;">Car Poor</h1>
+<br><br>
+
+<section id="slider">
+    <input type="radio" name="slider" id="s1" checked>
+    <input type="radio" name="slider" id="s2">
+    <input type="radio" name="slider" id="s3" >
+    <input type="radio" name="slider" id="s4">
+    <input type="radio" name="slider" id="s5" >
+    <input type="radio" name="slider" id="s6">
+    <input type="radio" name="slider" id="s7">
+    <input type="radio" name="slider" id="s8">
+    <input type="radio" name="slider" id="s9">
+
+    <label for="s1" id="slide1">
+        <img src="https://cdn.autotribune.co.kr/news/photo/202306/8499_45050_2312.jpg" height="100%" width="100%">
+    </label>
+
+    <label for="s2" id="slide2">
+        <img src="https://cdn.motor1.com/images/mgl/P33NqL/s3/2022-bmw-m3-touring.jpg" height="100%" width="100%">
+    </label>
+
+    <label for="s3" id="slide3">
+        <img src="https://kr.imboldn.com/wp-content/uploads/2021/07/1972-Lamborghini-Miura-SVJ-main.jpg" height="100%" width="100%">
+    </label>
+
+    <label for="s4" id="slide4">
+        <img src="https://cdn.autodaily.co.kr/news/photo/201902/407523_35867_1527.jpg" height="100%" width="100%">
+    </label>
+
+    <label for="s5" id="slide5">
+        <img src="https://img.kbchachacha.com/IMG/article/MAGAZINE/202305/6216365968614908.jpg" height="100%" width="100%">
+    </label>
+
+    <label for="s6" id="slide6">
+        <img src="https://i.namu.wiki/i/KTZ8I-xAhprgqRt0tV78cql_oxJLrtIMxQQWq9N8A6RPJmWAEw9KmXxfrNOE1q775mY6vRbB5irU5wCRxZ713w.webp" height="100%" width="100%">
+    </label>
+
+    <label for="s7" id="slide7">
+        <img src="https://img.kbchachacha.com/IMG/article/MAGAZINE/202305/6216365968614908.jpg" height="100%" width="100%">
+    </label>
+
+    <label for="s8" id="slide8">
+        <img src="https://img.kbchachacha.com/IMG/article/MAGAZINE/202305/6216365968614908.jpg" height="100%" width="100%">
+    </label>
+
+    <label for="s9" id="slide9">
+        <img src="https://img.kbchachacha.com/IMG/article/MAGAZINE/202305/6216365968614908.jpg" height="100%" width="100%">
+    </label>
+
+</section>
+
+</body>
+
+</html>
