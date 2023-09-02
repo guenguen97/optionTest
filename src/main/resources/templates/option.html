@@ -71,12 +71,12 @@
         .option-container {
 
         width: 90%;
-        height:50%;
+        height:100%;
         display : flex;
 
         }
 
-        .option-container >.option-box{
+        .option-box{
         width :90%;
         height:100%;
         margin : 30px;
@@ -84,15 +84,33 @@
          flex-wrap :wrap;
         }
         .option-item {
-        width:280px;
-        border :1px solid gray;
-        margin : 20px 20px;
+        width:240px;
+
+        margin : 20px;
+
+        height:220px;
+        text-align:center;
         }
-        .option-container >.option-box > div >  a  > .option-box-img {
+        .option-box-img {
         width :100%;
-        height:250px;
+        height:70%;
         }
 
+
+        .scrollable-container {
+    height: 80%; /* Adjust the height as needed */
+    overflow-y: auto; /* Enable vertical scrolling when content overflows */
+}
+
+
+        .border-highlight {
+            border: 2px ;
+            padding: 10px; /* 내부 여백 추가 */
+            border-radius: 5px; /* 둥근 모서리 */
+            background-color: rgba(173, 216, 230, 0);
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); /* 그림자 효과 */
+            transition: transform 0.3s ease, background-color 0.3s ease; /* 부드러운 변화 효과 */
+        }
     </style>
 </head>
 <body>
@@ -133,21 +151,23 @@
 
                     <div>옵션 선택</div>
                     <div class="option-container">
-
+                        <div class="scrollable-container">
                             <div class="option-box" >
-                                <div  id="box" class="option-item" th:each="carOption : ${carOption}" th:id="${carOption.id}">
+                                <div  id="box" class="option-item" onclick="doClick(this)" th:each="carOption : ${carOption}" th:id="${carOption.id}">
                                 <a >
                                 <img class="option-box-img" th:src="${carOption.imgUrl}" th:alt="${carOption.name}" th:data-img-url="${carOption.imgUrl}"  th:information-text="${carOption.information}">
                                 </a>
-                                <a class="check" href="#"  th:value="${carOption.price}">
+                                <a class="check" href="#"  th:value="${carOption.price}+이용균입니다.">
                                     <br>
                                     <input type="checkbox">
                                     <div th:text="${carOption.name}"></div>
-                                    <div class="price" th:text="${carOption.price}"></div><span>원</span>
+                                    <div class="price" th:text="${carOption.price}+원"></div>
                                 </a>
+
+
                                 </div>
                             </div>
-
+                        </div>
                     </div>
 
 
@@ -195,17 +215,45 @@
 
                          checkbox.prop("checked", false);
                          $(".option-price").text(currentPrice-otherPrice);
-                        optionItem.style.border="1px solid gray";
+<!--                        optionItem.style.border="1px solid gray";-->
 
                             } else {
                                checkbox.prop("checked", true);
                                  $(".option-price").text(currentPrice+otherPrice);
-                          optionItem.style.border="1px solid #007fa8";
+
+                            optionItem.classList.add('border-highlight');
                           }
                 });
 
 
             });
+
+</script>
+
+
+<script>
+
+
+    let previousDiv =null
+    function doClick(currentDiv) {
+
+          if (previousDiv !== null) {
+            previousDiv.classList.remove('border-highlight');
+            }
+         currentDiv.classList.add('border-highlight');
+
+            }
+
+         previousDiv = currentDiv;
+
+
+        // 현재 div에 border 스타일을 추가
+
+
+
+
+
+
 </script>
 
 
