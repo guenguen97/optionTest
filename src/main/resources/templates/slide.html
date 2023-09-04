@@ -17,9 +17,11 @@
 
         }
 
-    [type=radio] {
+    [type=radio] , .text{
         display : none;
         }
+
+
 
     #slider {
         height : 35vw;
@@ -27,21 +29,34 @@
         perspective : 1000px;
         transform-style : preserve-3d;
         margin-top:0px;
-        margin-right:00px;
+
         }
 
+
+
     #slider label {
-        margin : auto;
+
 
         width : 60%;
         height : 100%;
         border-radius : 4px;
         position : absolute;
-        left : 0;
+        left : 300px;
         right : 0;
         cursor : pointer;
         transition : transform 0.4s ease;
+        margin-left: 300px;
         }
+
+
+    .text {
+        position:absolute;
+        width:550px;
+        height: 100%;
+    }
+
+
+
 
 
 
@@ -49,20 +64,25 @@
     #s3:checked ~ #slide3, #s4:checked ~ #slide4,
     #s5:checked ~ #slide5, #s6:checked ~ #slide6,
     #s7:checked ~ #slide7, #s8:checked ~ #slide8,
-    #s9:checked ~ #slide9
-
+    #s9:checked ~ #slide9 , #s1:checked ~ .text1,
+     #s2:checked ~.text2,  #s3:checked ~.text3,
+     #s4:checked ~.text4, #s5:checked ~.text5,
+     #s6:checked ~.text6, #s7:checked ~.text7,
+     #s8:checked ~.text8, #s9:checked ~.text9
 
     {
         box-shadow : 0 13px 25px 0 rgba(0,0,0,.3), 0 11px 7px 0 rgba(0,0,0,.19);
         transform : translate3d(0,-0%,0);
 
-        border :3px solid black;
+
 
          -webkit-box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
          -moz-box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
         -ms-box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
         -o-box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
         box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
+
+    display :block;
         }
 
     #s1:checked ~ #slide2, #s2:checked ~ #slide3,
@@ -114,6 +134,7 @@
     {
         box-shadow : 0 6px 10px 0 rgba(0,0,0,.3), 0 2px 2px 0 rgba(0,0,0,.2);
         transform : translate3d(75%,-50%,-500px);
+        display:none;
             }
 
      #s1:checked ~ #slide7  , #s2:checked ~ #slide8,
@@ -170,8 +191,9 @@
 <h1 style="text-align: start; font-family: monosplace; font-size: 42px;  ">Car Poor</h1>
 <br><br>
 
-<section id="slider">
+<section id="slider" >
     <input type="radio" name="slider" id="s1" checked>
+
     <input type="radio" name="slider" id="s2">
     <input type="radio" name="slider" id="s3" >
     <input type="radio" name="slider" id="s4">
@@ -181,41 +203,52 @@
     <input type="radio" name="slider" id="s8">
     <input type="radio" name="slider" id="s9">
 
-    <label for="s1" id="slide1">
+
+    <label for="s1" id="slide1" class="img" >
         <img src="https://cdn.autotribune.co.kr/news/photo/202306/8499_45050_2312.jpg" height="100%" width="100%">
     </label>
+    <div class="text text1"><a href="#">1</a> </div>
 
-    <label for="s2" id="slide2">
+
+    <label for="s2" id="slide2" class="img" >
         <img src="https://cdn.motor1.com/images/mgl/P33NqL/s3/2022-bmw-m3-touring.jpg" height="100%" width="100%">
     </label>
+    <div class="text text2 "> 2 </div>
 
-    <label for="s3" id="slide3">
+    <label for="s3" id="slide3" class="img" >
         <img src="https://kr.imboldn.com/wp-content/uploads/2021/07/1972-Lamborghini-Miura-SVJ-main.jpg" height="100%" width="100%">
     </label>
+    <div class="text text3"> 3 </div>
 
-    <label for="s4" id="slide4">
+    <label for="s4" id="slide4" class="img" >
         <img src="https://cdn.autodaily.co.kr/news/photo/201902/407523_35867_1527.jpg" height="100%" width="100%">
     </label>
+    <div class="text text4"> 4 </div>
 
-    <label for="s5" id="slide5">
+    <label for="s5" id="slide5" class="img" >
         <img src="https://img.kbchachacha.com/IMG/article/MAGAZINE/202305/6216365968614908.jpg" height="100%" width="100%">
     </label>
+    <div class="text text5"> 5 </div>
 
-    <label for="s6" id="slide6">
+    <label for="s6" id="slide6" class="img" >
         <img src="https://i.namu.wiki/i/KTZ8I-xAhprgqRt0tV78cql_oxJLrtIMxQQWq9N8A6RPJmWAEw9KmXxfrNOE1q775mY6vRbB5irU5wCRxZ713w.webp" height="100%" width="100%">
     </label>
+    <div class="text text6"> 6 </div>
 
-    <label for="s7" id="slide7">
+    <label for="s7" id="slide7" class="img" >
         <img src="https://img.kbchachacha.com/IMG/article/MAGAZINE/202305/6216365968614908.jpg" height="100%" width="100%">
     </label>
+    <div class="text text7"> 7</div>
 
-    <label for="s8" id="slide8">
+    <label for="s8" id="slide8" class="img" >
         <img src="https://img.kbchachacha.com/IMG/article/MAGAZINE/202305/6216365968614908.jpg" height="100%" width="100%">
     </label>
+    <div class="text text8">8</div>
 
-    <label for="s9" id="slide9">
+    <label for="s9" id="slide9" class="img" >
         <img src="https://img.kbchachacha.com/IMG/article/MAGAZINE/202305/6216365968614908.jpg" height="100%" width="100%">
     </label>
+    <div class="text text9"> 9</div>
 
 </section>
 

@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <title >Car Poor</title>
+</head>
+<style>
+
+    *{
+        margin : 0;
+        padding : 0;
+        color :inherit;
+        text-decoration:none;
+        }
+
+    body {
+        padding : 20px;
+        background : #eee;
+        user-select : none;
+        background-color :#1c1c1a;
+          overflow: hidden;
+        }
+
+    [type=radio] , .text{
+        display : none;
+        }
+
+
+
+    #slider {
+        height : 35vw;
+        position : relative;
+        perspective : 1000px;
+        transform-style : preserve-3d;
+        margin-top:0px;
+
+        }
+
+
+
+    #slider label {
+
+
+        width : 50%;
+        height : 100%;
+        border-radius : 4px;
+        position : absolute;
+        left : 400px;
+        right : 0;
+        cursor : pointer;
+        transition : transform 0.7s ease;
+        margin-left: 300px;
+
+        }
+        img {
+
+           object-fit :cover;
+
+         box-sizing: border-box;
+border: 7px solid black;
+border-radius: 7px;
+-moz-border-radius: 7px;
+-khtml-border-radius: 7px;
+-webkit-border-radius: 5px;
+
+        }
+
+
+
+    #s1:checked ~ .text1,  #s1:checked ~.refImg,
+     #s2:checked ~.text2,  #s3:checked ~.text3,
+     #s4:checked ~.text4, #s5:checked ~.text5,
+     #s6:checked ~.text6, #s7:checked ~.text7,
+     #s8:checked ~.text8, #s9:checked ~.text9 {
+
+
+         box-shadow : 0 13px 25px 0 rgba(0,0,0,.3), 0 11px 7px 0 rgba(0,0,0,.19);
+
+        display :block;
+
+
+        }
+
+
+
+
+    #s1:checked ~ #slide1, #s2:checked ~ #slide2,
+    #s3:checked ~ #slide3, #s4:checked ~ #slide4,
+    #s5:checked ~ #slide5, #s6:checked ~ #slide6,
+    #s7:checked ~ #slide7, #s8:checked ~ #slide8,
+    #s9:checked ~ #slide9
+                        {
+     box-shadow : 0 13px 25px 0 rgba(0,0,0,.3), 0 11px 7px 0 rgba(0,0,0,.19);
+
+
+         -webkit-box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
+         -moz-box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
+        -ms-box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
+        -o-box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
+        box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
+             transform : translate3d(-5%,-0%,100px) rotateY(-0deg);
+
+
+
+        }
+
+    #s1:checked ~ #slide2, #s2:checked ~ #slide3,
+    #s3:checked ~ #slide4, #s4:checked ~ #slide5,
+    #s5:checked ~ #slide6, #s6:checked ~ #slide7,
+   #s7:checked ~ #slide8,   #s8:checked ~ #slide9,
+   #s9:checked ~ #slide1
+    {
+        box-shadow : 0 6px 10px 0 rgba(0,0,0,.3), 0 2px 2px 0 rgba(0,0,0,.2);
+
+        transform : translate3d(25%,-0%,-200px) rotateY(-20deg);
+
+        }
+
+    #s1:checked ~ #slide3, #s2:checked ~ #slide4,
+    #s3:checked ~ #slide5, #s4:checked ~ #slide6,
+    #s5:checked ~ #slide7,  #s6:checked ~ #slide8,
+    #s7:checked ~ #slide9, #s8:checked ~ #slide1,
+    #s9:checked ~ #slide2{
+        box-shadow : 0 1px 4px 0 rgba(0,0,0,.37);
+
+        transform : translate3d(50%,-0%,-400px) rotateY(-20deg);
+
+        }
+
+
+    #s1:checked ~ #slide4, #s2:checked ~ #slide5,
+    #s3:checked ~ #slide6, #s4:checked ~ #slide7,
+    #s5:checked ~ #slide8, #s6:checked ~ #slide9,
+     #s7:checked ~ #slide1, #s8:checked ~ #slide2,
+     #s9:checked ~ #slide3 {
+        box-shadow : 0 6px 10px 0 rgba(0,0,0,.3), 0 2px 2px 0 rgba(0,0,0,.2);
+
+        transform : translate3d(75%,-0%,-600px) rotateY(-20deg);
+
+        }
+
+
+      #s1:checked ~ #slide5, #s2:checked ~ #slide6,
+    #s3:checked ~ #slide7, #s4:checked ~ #slide8,
+    #s5:checked ~ #slide9,  #s6:checked ~ #slide1,
+     #s7:checked ~ #slide2, #s8:checked ~ #slide3,
+     #s9:checked ~ #slide4 {
+        box-shadow : 0 1px 4px 0 rgba(0,0,0,.37);
+
+        transform : translate3d(100%,-0%,-800px) rotateY(-20deg) ;
+
+        }
+
+
+     #s1:checked ~ #slide6  , #s2:checked ~ #slide7,
+    #s3:checked ~ #slide8, #s4:checked ~ #slide9,
+    #s5:checked ~ #slide1,  #s6:checked ~ #slide2,
+     #s7:checked ~ #slide3, #s8:checked ~ #slide4,
+     #s9:checked ~ #slide5
+
+    {
+        box-shadow : 0 6px 10px 0 rgba(0,0,0,.3), 0 2px 2px 0 rgba(0,0,0,.2);
+        transform : translate3d(75%,-0%,-500px);
+        display:none;
+            }
+
+     #s1:checked ~ #slide7  , #s2:checked ~ #slide8,
+    #s3:checked ~ #slide9, #s4:checked ~ #slide1,
+    #s5:checked ~ #slide2,  #s6:checked ~ #slide3,
+     #s7:checked ~ #slide4, #s8:checked ~ #slide5,
+     #s9:checked ~ #slide6
+    {
+        box-shadow : 0 6px 10px 0 rgba(0,0,0,.3), 0 2px 2px 0 rgba(0,0,0,.2);
+        transform : translate3d(90%,-60%,-600px);
+        display:none;
+        }
+
+     #s1:checked ~ #slide8  , #s2:checked ~ #slide9,
+    #s3:checked ~ #slide1, #s4:checked ~ #slide2,
+    #s5:checked ~ #slide3,  #s6:checked ~ #slide4,
+     #s7:checked ~ #slide5, #s8:checked ~ #slide6,
+     #s9:checked ~ #slide7
+    {
+        box-shadow : 0 6px 10px 0 rgba(0,0,0,.3), 0 2px 2px 0 rgba(0,0,0,.2);
+        transform : translate3d(105%,-70%,-700px);
+        display:none;
+        }
+
+
+     #s1:checked ~ #slide9  , #s2:checked ~ #slide1,
+    #s3:checked ~ #slide2, #s4:checked ~ #slide3,
+    #s5:checked ~ #slide4,  #s6:checked ~ #slide5,
+     #s7:checked ~ #slide6, #s8:checked ~ #slide7,
+     #s9:checked ~ #slide8
+    {
+        box-shadow : 0 6px 10px 0 rgba(0,0,0,.3), 0 2px 2px 0 rgba(0,0,0,.2);
+        transform : translate3d(120%,-80%,-800px);
+        display:none;
+        }
+
+
+    .text {
+        position:absolute;
+        width:550px;
+        height: 100%;
+
+        left :2%;
+        color:white;
+        font-size : 50px;
+
+    }
+
+    .refImg{
+           opacity: 0;
+    transition: opacity 1s;
+    border :5px solid black;
+
+
+    transform: scaleY(-1);
+    width: 100%;
+    transform: scaleY(-1); /* Flip the image vertically */
+    opacity: 0.3; /* Set initial opacity */
+    transition: filter 1s; /* Add a transition effect for opacity changes */
+    clip-path: polygon(0 70%, 100% 70%, 100% 100%, 0 100%);
+
+
+    }
+
+
+
+</style>
+
+<body>
+<br>
+<h1 style="text-align: start; font-family: monosplace; font-size: 42px;  ">Car Poor</h1>
+<br><br>
+
+<section id="slider" >
+    <input type="radio" name="slider" id="s1" checked>
+
+    <input type="radio" name="slider" id="s2">
+    <input type="radio" name="slider" id="s3" >
+    <input type="radio" name="slider" id="s4">
+    <input type="radio" name="slider" id="s5" >
+    <input type="radio" name="slider" id="s6">
+    <input type="radio" name="slider" id="s7">
+    <input type="radio" name="slider" id="s8">
+    <input type="radio" name="slider" id="s9">
+
+
+    <label for="s1" id="slide1" class="img" >
+        <img src="https://cdn.autotribune.co.kr/news/photo/202306/8499_45050_2312.jpg" height="100%" width="100%">
+        <img class="refImg" src="https://cdn.autotribune.co.kr/news/photo/202306/8499_45050_2312.jpg" >
+    </label>
+    <div class="text text1"><a href="#"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 166 23" xml:space="preserve" class="logo color-blue"><g><polygon points="63.76,3.22 63.76,9.47 56.68,9.47 56.68,3.22 52.78,3.22 52.78,19.61 56.68,19.61 56.68,13.02 63.76,13.02 63.76,19.61 67.66,19.61 67.66,3.22 67.46,3.22" class="st0"></polygon> <polygon points="81.96,3.22 77.87,9.71 73.8,3.22 69.19,3.22 75.93,13.93 75.93,19.61 79.83,19.61 79.83,13.93 86.56,3.22 86.2,3.22" class="st0"></polygon> <path d="M99.11,3.22v12.01c0,0.46-0.34,0.82-0.83,0.82h-6.25V3.22h-3.9v16.39h11.53c1.03,0,1.85-0.3,2.45-0.9c0.6-0.6,0.9-1.42,0.9-2.45V3.22h-0.19H99.11z" class="st0"></path> <path d="M118.15,3.22h-11.53v16.39h3.9V6.77h6.26c0.5,0,0.83,0.39,0.83,0.82v12.02h3.9V6.57c0-1.03-0.3-1.85-0.9-2.45 C119.99,3.53,119.17,3.22,118.15,3.22z" class="st0"></path> <path d="M136.64,3.22h-11.53v16.39h11.53c1.02,0,1.84-0.3,2.44-0.9c0.6-0.6,0.9-1.42,0.9-2.45V6.57
+      c0-1.03-0.3-1.85-0.9-2.45C138.48,3.53,137.66,3.22,136.64,3.22z M136.09,7.62v7.59c0,0.44-0.32,0.85-0.83,0.85h-6.25V6.77h6.23 C135.75,6.77,136.09,7.13,136.09,7.62z" class="st0"></path> <path d="M146.78,3.22c-1.02,0-1.85,0.3-2.45,0.9c-0.6,0.6-0.9,1.42-0.9,2.45v13.04h3.89v-5.07h7.08v5.07h3.9V3.22 H146.78z M154.41,6.77v4.22h-7.08V7.6c0-0.4,0.31-0.83,0.83-0.83H154.41z" class="st0"></path> <rect x="162.1" y="3.22" width="3.9" height="16.39" class="st0"></rect></g> <g><path d="M22.29,22.83c12.31,0,22.29-5.11,22.29-11.42C44.59,5.11,34.61,0,22.29,0C9.98,0,0,5.11,0,11.41 C0,17.72,9.98,22.83,22.29,22.83z M26.49,17.23c-0.37,0.86-1.01,2.7-2.48,3.44c-0.44,0.22-0.99,0.33-1.49,0.34 c-0.11,0-0.19,0-0.22,0c-4.12,0-7.94-0.57-11.15-1.55c-0.03-0.01-0.1-0.04-0.12-0.05c-0.3-0.1-0.45-0.24-0.45-0.4 c0-0.15,0.08-0.26,0.18-0.36c0.04-0.05,0.11-0.1,0.2-0.18c0.74-0.62,2.97-2.23,7.17-3.84c1.47-0.56,3.31-1.26,5.25-1.67 C24.51,12.72,28.7,12.08,26.49,17.23z M37.75,5.72c0.08-0.14,0.19-0.25,0.38-0.27c0.1-0.01,0.25,0.02,0.46,0.15 c2.62,1.61,4.17,3.62,4.17,5.8c0,3.94-5.06,7.32-12.3,8.8c-0.47,0.09-0.77,0.09-0.88-0.03c-0.07-0.07-0.09-0.2,0-0.35 c0.05-0.08,0.1-0.15,0.19-0.27c3.94-4.65,6.94-11.5,7.8-13.48C37.64,5.95,37.7,5.81,37.75,5.72z M18.16,5.58 c0.37-0.86,1.01-2.7,2.48-3.43c0.45-0.22,0.99-0.33,1.49-0.34c0.11,0,0.19,0,0.22,0c4.12,0,7.94,0.57,11.15,1.55 c0.02,0.01,0.1,0.04,0.12,0.04c0.3,0.1,0.45,0.23,0.45,0.4c0,0.15-0.08,0.26-0.18,0.36c-0.05,0.04-0.11,0.1-0.2,0.18 c-0.74,0.62-2.97,2.23-7.17,3.84c-1.47,0.56-3.32,1.26-5.24,1.67C20.14,10.09,15.95,10.73,18.16,5.58z M14.12,2.61 c0.47-0.09,0.77-0.09,0.88,0.03c0.06,0.07,0.08,0.2,0,0.35c-0.05,0.08-0.1,0.16-0.19,0.27c-3.94,4.65-6.94,11.5-7.8,13.48 c-0.06,0.14-0.13,0.27-0.18,0.36c-0.08,0.14-0.18,0.26-0.37,0.27c-0.11,0.01-0.25-0.02-0.47-0.15 c-2.62-1.61-4.17-3.62-4.17-5.8C1.82,7.48,6.88,4.09,14.12,2.61z" class="st0"></path></g></svg>대한민국을 대표하는
+           극강의 초 가성비
+        // 국내 점유율 90%//
+        전기차 점유율 96%
+        최강 "국산" 현대자동차
+        글로벌 판매 순위 4위 </a> </div>
+
+
+    <label for="s2" id="slide2" class="img" >
+        <img src="https://cdn.motor1.com/images/mgl/P33NqL/s3/2022-bmw-m3-touring.jpg" height="100%" width="100%">
+        <img class="refImg" src="https://cdn.motor1.com/images/mgl/P33NqL/s3/2022-bmw-m3-touring.jpg" height="100%" width="100%">
+
+    </label>
+    <div class="text text2 "> 2 </div>
+
+    <label for="s3" id="slide3" class="img" >
+        <img src="https://kr.imboldn.com/wp-content/uploads/2021/07/1972-Lamborghini-Miura-SVJ-main.jpg" height="100%" width="100%">
+        <img class="refImg" src="https://kr.imboldn.com/wp-content/uploads/2021/07/1972-Lamborghini-Miura-SVJ-main.jpg" height="100%" width="100%">
+
+    </label>
+    <div class="text text3"> 3 </div>
+
+    <label for="s4" id="slide4" class="img" >
+        <img src="https://cdn.autodaily.co.kr/news/photo/201902/407523_35867_1527.jpg" height="100%" width="100%">
+        <img class="refImg" src="https://cdn.autodaily.co.kr/news/photo/201902/407523_35867_1527.jpg" height="100%" width="100%">
+
+    </label>
+    <div class="text text4"> 4 </div>
+
+    <label for="s5" id="slide5" class="img" >
+        <img src="https://img.kbchachacha.com/IMG/article/MAGAZINE/202305/6216365968614908.jpg" height="100%" width="100%">
+        <img class="refImg" src="https://img.kbchachacha.com/IMG/article/MAGAZINE/202305/6216365968614908.jpg" height="100%" width="100%">
+
+    </label>
+    <div class="text text5"> 5 </div>
+
+    <label for="s6" id="slide6" class="img" >
+        <img src="https://cdn.motor1.com/images/mgl/P33NqL/s3/2022-bmw-m3-touring.jpg" height="100%" width="100%">
+        <img class="refImg" src="https://cdn.motor1.com/images/mgl/P33NqL/s3/2022-bmw-m3-touring.jpg" height="100%" width="100%">
+
+    </label>
+    <div class="text text6"> 6 </div>
+
+    <label for="s7" id="slide7" class="img" >
+        <img src="https://img.kbchachacha.com/IMG/article/MAGAZINE/202305/6216365968614908.jpg" height="100%" width="100%">
+        <img class="refImg" src="https://img.kbchachacha.com/IMG/article/MAGAZINE/202305/6216365968614908.jpg" height="100%" width="100%">
+
+    </label>
+    <div class="text text7"> 7</div>
+
+    <label for="s8" id="slide8" class="img" >
+        <img src="https://img.kbchachacha.com/IMG/article/MAGAZINE/202305/6216365968614908.jpg" height="100%" width="100%">
+        <img class="refImg" src="https://img.kbchachacha.com/IMG/article/MAGAZINE/202305/6216365968614908.jpg" height="100%" width="100%">
+
+    </label>
+    <div class="text text8">8</div>
+
+    <label for="s9" id="slide9" class="img" >
+        <img src="https://img.kbchachacha.com/IMG/article/MAGAZINE/202305/6216365968614908.jpg" height="100%" width="100%">
+        <img class="refImg" src="https://img.kbchachacha.com/IMG/article/MAGAZINE/202305/6216365968614908.jpg" height="100%" width="100%">
+
+    </label>
+    <div class="text text9"> 9</div>
+
+</section>
+
+
+<script>
+    const reflectedImage = $('.refImg');
+
+    // Gradually increase opacity over time
+    let opacity = 0;
+    const interval = setInterval(() => {
+        opacity += 0.01; // Adjust the increment value as needed
+        reflectedImage.style.opacity = opacity.toFixed(2);
+
+        if (opacity >= 1) {
+            clearInterval(interval); // Stop the interval when opacity reaches 1 (fully visible)
+        }
+    }, 10); // Adjust the interval duration as needed
+</script>
+
+</body>
+
+</html>
