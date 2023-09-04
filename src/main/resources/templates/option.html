@@ -43,7 +43,7 @@
              height: 500px ;
             margin-left: auto;
             margin-right: auto;
-            border : 1px solid gray;
+
 
         }
         .img-section > .img-container >img {
@@ -55,11 +55,12 @@
 
 
 
- .img-section>.information-box {
+ .img-section> .img-container>.information-box {
                 width :  600px ;
                 height: 200px ;
             margin-left: auto;
             margin-right: auto;
+            border :1px solid black;
  }
         .select-section {
          width:50%;
@@ -83,18 +84,42 @@
          display : flex;
          flex-wrap :wrap;
         }
+
+
         .option-item {
         width:240px;
-
-        margin : 20px;
-
+        margin : 40px;
         height:220px;
         text-align:center;
+        box-sizing:border-box;
+        border:1px solid gray;
+        border-radius: 5px; /* 둥근 모서리 */
         }
+
+
         .option-box-img {
         width :100%;
         height:70%;
         }
+
+
+        /* 이미지 아래에 글이랑 가격 있는 공간  */
+        .check{
+
+        padding-bottom :10px;
+        display:inline-block;
+        width:238px;
+        height:30%;
+        margin-left:auto;
+        margin-right:auto;
+        }
+        .option-item > div> a > input{
+
+        display:none;
+
+
+        }
+
 
 
         .scrollable-container {
@@ -110,6 +135,7 @@
             background-color: rgba(173, 216, 230, 0);
             box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); /* 그림자 효과 */
             transition: transform 0.3s ease, background-color 0.3s ease; /* 부드러운 변화 효과 */
+             border:4px solid gray;
         }
     </style>
 </head>
@@ -149,20 +175,21 @@
 <!--           옵션 선택 넣을 공간-->
             <div class="select-section">
 
-                    <div>옵션 선택</div>
+
                     <div class="option-container">
                         <div class="scrollable-container">
                             <div class="option-box" >
-                                <div  id="box" class="option-item" onclick="doClick(this)" th:each="carOption : ${carOption}" th:id="${carOption.id}">
+                                <div  id="box" class="option-item"  th:each="carOption : ${carOption}" th:id="${carOption.id}">
                                 <a >
                                 <img class="option-box-img" th:src="${carOption.imgUrl}" th:alt="${carOption.name}" th:data-img-url="${carOption.imgUrl}"  th:information-text="${carOption.information}">
                                 </a>
-                                <a class="check" href="#"  th:value="${carOption.price}+이용균입니다.">
-                                    <br>
-                                    <input type="checkbox">
-                                    <div th:text="${carOption.name}"></div>
-                                    <div class="price" th:text="${carOption.price}+원"></div>
-                                </a>
+                                    <div  class="check"   onclick="doClick(this)"  th:value="${carOption.price}+이용균입니다." >
+                                        <a href="#" >
+                                        <input type="checkbox">
+                                        <div th:text="${carOption.name}"></div>
+                                        <div class="price" th:text="${carOption.price}+원"></div>
+                                        </a>
+                                    </div>
 
 
                                 </div>
@@ -203,13 +230,16 @@
                 // Attach a click event handler to the selected divs
                 text.click(function() {
                     var checkbox = $(this).find("input[type='checkbox']");
+                    console.log(checkbox);
                     var num = $(this).attr("value");
+                    console.log(num);
+
                     optionPrice = $(".option-price").text();
                     var currentPrice =  parseFloat(optionPrice, 10);
                     var otherPrice = parseFloat(num, 10);
 
                     var optionItem = document.getElementById('box');
-                    var num1 = parseFloat(num.textContent);
+
                     console.log(optionItem);
                     if (checkbox.prop("checked")) {
 
@@ -221,7 +251,7 @@
                                checkbox.prop("checked", true);
                                  $(".option-price").text(currentPrice+otherPrice);
 
-                            optionItem.classList.add('border-highlight');
+
                           }
                 });
 
@@ -234,20 +264,18 @@
 <script>
 
 
-    let previousDiv =null
-    function doClick(currentDiv) {
 
-          if (previousDiv !== null) {
-            previousDiv.classList.remove('border-highlight');
-            }
-         currentDiv.classList.add('border-highlight');
+    function doClick(clickedDiv) {
+   var c = clickedDiv.closest('.option-item');
 
-            }
-
-         previousDiv = currentDiv;
+   c.classList.toggle('border-highlight');
+ }
 
 
-        // 현재 div에 border 스타일을 추가
+
+
+
+         // 현재 div에 border 스타일을 추가
 
 
 
