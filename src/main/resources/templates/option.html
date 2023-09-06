@@ -211,7 +211,7 @@
                                 <a >
                                 <img class="option-box-img" th:src="${carOption.imgUrl}" th:alt="${carOption.name}" th:data-img-url="${carOption.imgUrl}"  th:information-text="${carOption.information}">
                                 </a>
-                                    <div  class="check"  th:img="${carOption.imgUrl}" onclick="doClick(this)"  th:value="${carOption.price}+이용균입니다." >
+                                    <div  class="check"  th:optionId="${carOption.id}" onclick="doClick(this)"  th:value="${carOption.price}+이용균입니다." >
                                         <a href="#" >
                                         <input class="checkbox" type="checkbox">
                                         <div th:text="${carOption.name}"></div>
@@ -248,22 +248,14 @@
 <script>
     var optionPrice=null;
         $(document).ready(function() {
-                $(".option-box-img").on("click", function() {
-                    var imgUrl = $(this).attr("data-img-url");
-                    var informationText = $(this).attr("information-text");;
-                    $(".img-item1").attr("src", imgUrl);
-                    $(".information-text").text(informationText);
-                });
 
+                     let tagIds = [];
                    var text = $(".check");
-
-                // Attach a click event handler to the selected divs
                 text.click(function() {
                     var checkbox = $(this).find("input[type='checkbox']");
                     var radio = $(this).find("input[type='radio']");
                     var num = $(this).attr("value");
-                    console.log(num);
-                    var img=null;
+
                     optionPrice = $(".option-price").text();
                     var currentPrice =  parseFloat(optionPrice, 10);
                     var otherPrice = parseFloat(num, 10);
@@ -276,18 +268,15 @@
                          checkbox.prop("checked", false);
                          radio.prop("checked", false);
                          $(".option-price").text(currentPrice-otherPrice);
-
+                        tagIds=tagIds.filter((element) => element !== $(this).attr("optionId"));
 
                             } else {
                                checkbox.prop("checked", true);
                                radio.prop("checked", true);
                                  $(".option-price").text(currentPrice+otherPrice);
+                                     tagIds.push($(this).attr("optionId"));
 
-                                 console.log(img);
-
-                                $(".resultImg").attr("src", $(this).attr("img"));
-                                 $(".resultImg").attr("name", $(this).attr("img"));
-
+                                        console.log(tagIds);
                           }
                 });
 
@@ -295,38 +284,26 @@
             });
 
 </script>
-
-<script th:inline="javascript">
-    let tagIds = [];
-
-
-        /*[# th:each="n : ${carOption}"]*/
-
-        tagIds.push("[(${n.name})]");
-
-        /*[/]*/
-    console.log(tagIds);
-
-</script>
-
-
-
-
 <script>
 
+    $(".option-box-img").on("click", function() {
+                   var imgUrl = $(this).attr("data-img-url");
+                   var informationText = $(this).attr("information-text");;
+                   $(".img-item1").attr("src", imgUrl);
+                   $(".information-text").text(informationText);
+               });
+
+   function doClick(clickedDiv) {
+  var c = clickedDiv.closest('.option-item');
+
+  c.classList.toggle('border-highlight');
+}
 
 
-    function doClick(clickedDiv) {
-   var c = clickedDiv.closest('.option-item');
-
-   c.classList.toggle('border-highlight');
- }
 
 
 
-
-
-         // 현재 div에 border 스타일을 추가
+        // 현재 div에 border 스타일을 추가
 
 
 

@@ -35,11 +35,5 @@ public class CarController {
         return "slideTest";
     }
 
-    @PostMapping("/result")
-    public String result(Model model) {
-        List<CarOption> carOption =this.carService.getList();
-        System.out.println(carOption.get(2));
-        model.addAttribute("carOption", carOption);
-        return "result";
-    }
+
 }
