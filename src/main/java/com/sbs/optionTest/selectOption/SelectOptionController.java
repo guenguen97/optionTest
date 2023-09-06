@@ -17,10 +17,10 @@ public class SelectOptionController {
     private final SelectOptionService selectOptionService;
 
     @PostMapping("/")
-    public String result(Model model, @Valid SelectOption selectOption , @RequestParam("optionId") Integer[] optionId) {
+    public String result(Model model, @Valid SelectOption selectOption , @RequestParam("optionId") String optionId) {
 
         selectOptionService.create(selectOption.getUserName(),selectOption.getColorId(),selectOption.getOptionId());
         System.out.println("차 옵션 만드는거 1차 실행부분");
-        return "slide";
+        return "redirect:/";
     }
 }
