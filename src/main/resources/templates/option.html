@@ -183,7 +183,7 @@
     </div>
     <!-- 3 -->
     <div class="section section-3">
-        <form id="section3-form" action="/result" method="post">
+        <form id="section3-form"th:action="@{/}"  method="post">
         <a href="#section4">Some section-3</a>
 
     <div>옵션</div>
@@ -211,12 +211,12 @@
                                 <a >
                                 <img class="option-box-img" th:src="${carOption.imgUrl}" th:alt="${carOption.name}" th:data-img-url="${carOption.imgUrl}"  th:information-text="${carOption.information}">
                                 </a>
-                                    <div  class="check"  th:optionId="${carOption.id}" onclick="doClick(this)"  th:value="${carOption.price}+이용균입니다." >
+                                    <div  class="check"  type="optionId" th:optionId="${carOption.id}" onclick="doClick(this)"  th:value="${carOption.price}+이용균입니다." >
                                         <a href="#" >
-                                        <input class="checkbox" type="checkbox">
+                                        <input class="checkbox" type="checkbox" th:name="optionId" th:value="${carOption.id}" >
                                         <div th:text="${carOption.name}"></div>
                                         <div class="price" th:text="${carOption.price}+원"></div>
-                                            <input class="radio" type="radio">
+                                            <input class="radio" type="radio"  th:name="optionId" th:value="${carOption.id}" >
                                         </a>
                                     </div>
 
@@ -233,7 +233,7 @@
             </div>
         </div>
 
-
+            <button class="btn-submit" type="submit" >차 등록</button>
         </form>
         <img class="resultImg" src="" alt=""  name="">
     </div>

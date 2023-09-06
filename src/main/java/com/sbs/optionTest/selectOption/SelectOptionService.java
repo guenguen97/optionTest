@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 @Service
 public class SelectOptionService {
-    private  SelectOptionRepository selectOptionRepository;
+    private  final SelectOptionRepository selectOptionRepository;
 
 
     public SelectOption create(String userName, Integer[] colorId, Integer[] optionId) {
@@ -16,6 +16,6 @@ public class SelectOptionService {
         user.setColorId(colorId);
         user.setOptionId(optionId);
 
-        return user;
+        return selectOptionRepository.save(user);
     }
 }

@@ -20,7 +20,7 @@ public class SelectOption {
     @Column(length = 200) // VARCHAR(200)
     private String userName;
 
-    @Column() // TEXT
+    @ElementCollection
     private Integer[] optionId;
 
     @Column()  //옵션 가격
