@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
@@ -32,5 +33,13 @@ public class CarController {
         System.out.println(carOption.get(2));
         model.addAttribute("carOption", carOption);
         return "slideTest";
+    }
+
+    @PostMapping("/result")
+    public String result(Model model) {
+        List<CarOption> carOption =this.carService.getList();
+        System.out.println(carOption.get(2));
+        model.addAttribute("carOption", carOption);
+        return "result";
     }
 }

@@ -123,13 +123,15 @@
 
         padding-bottom :10px;
         display:inline-block;
-        width:70%;
+        width:100%;
         height:30%;
         margin-left:auto;
         margin-right:auto;
         box-sizing:border-box;
         }
-        .option-item > div> a > input{
+
+
+        .option-item > div> a > .checkbox{
 
         display:none;
 
@@ -155,6 +157,13 @@
 
 
         }
+
+
+        .resultImg {
+        width:500px;
+        height:500px;
+        border:1px solid red;
+        }
     </style>
 </head>
 <body>
@@ -174,6 +183,7 @@
     </div>
     <!-- 3 -->
     <div class="section section-3">
+        <form id="section3-form" action="/result" method="post">
         <a href="#section4">Some section-3</a>
 
     <div>옵션</div>
@@ -201,11 +211,12 @@
                                 <a >
                                 <img class="option-box-img" th:src="${carOption.imgUrl}" th:alt="${carOption.name}" th:data-img-url="${carOption.imgUrl}"  th:information-text="${carOption.information}">
                                 </a>
-                                    <div  class="check"   onclick="doClick(this)"  th:value="${carOption.price}+이용균입니다." >
+                                    <div  class="check"  th:img="${carOption.imgUrl}" onclick="doClick(this)"  th:value="${carOption.price}+이용균입니다." >
                                         <a href="#" >
-                                        <input type="checkbox">
+                                        <input class="checkbox" type="checkbox">
                                         <div th:text="${carOption.name}"></div>
                                         <div class="price" th:text="${carOption.price}+원"></div>
+                                            <input class="radio" type="radio">
                                         </a>
                                     </div>
 
@@ -223,7 +234,8 @@
         </div>
 
 
-
+        </form>
+        <img class="resultImg" src="" alt=""  name="">
     </div>
     <!-- 4 -->
     <div class="section section-4">
@@ -248,10 +260,10 @@
                 // Attach a click event handler to the selected divs
                 text.click(function() {
                     var checkbox = $(this).find("input[type='checkbox']");
-                    console.log(checkbox);
+                    var radio = $(this).find("input[type='radio']");
                     var num = $(this).attr("value");
                     console.log(num);
-
+                    var img=null;
                     optionPrice = $(".option-price").text();
                     var currentPrice =  parseFloat(optionPrice, 10);
                     var otherPrice = parseFloat(num, 10);
@@ -262,13 +274,19 @@
                     if (checkbox.prop("checked")) {
 
                          checkbox.prop("checked", false);
+                         radio.prop("checked", false);
                          $(".option-price").text(currentPrice-otherPrice);
-<!--                        optionItem.style.border="1px solid gray";-->
+
 
                             } else {
                                checkbox.prop("checked", true);
+                               radio.prop("checked", true);
                                  $(".option-price").text(currentPrice+otherPrice);
 
+                                 console.log(img);
+
+                                $(".resultImg").attr("src", $(this).attr("img"));
+                                 $(".resultImg").attr("name", $(this).attr("img"));
 
                           }
                 });
@@ -277,6 +295,21 @@
             });
 
 </script>
+
+<script th:inline="javascript">
+    let tagIds = [];
+
+
+        /*[# th:each="n : ${carOption}"]*/
+
+        tagIds.push("[(${n.name})]");
+
+        /*[/]*/
+    console.log(tagIds);
+
+</script>
+
+
 
 
 <script>
